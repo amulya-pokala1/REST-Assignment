@@ -27,4 +27,8 @@ public class DBConnection {
 	 
 	    return singleInstance.dbConn;
 	  }
+	protected void finalize()
+	{
+		dbConn.close();
+	}
 }
