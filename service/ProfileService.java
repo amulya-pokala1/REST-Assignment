@@ -31,6 +31,7 @@ public class ProfileService {
 			Profile p=new Profile(name,followers,About);
 			listofpersons.add(p);
 		}
+		smt.close();
 		return listofpersons;
 		
 	}
@@ -48,6 +49,7 @@ public class ProfileService {
 			profile.setNoOfFriends(rs.getInt(2));
 			profile.setAbout(rs.getString(3));
 		}
+		ps.close();
 		return profile;
 	}
 	public boolean addnewProfile(Profile profile) throws ClassNotFoundException, SQLException
@@ -60,6 +62,7 @@ public class ProfileService {
 		ps.setString(3, profile.getAbout());
 		int rowsCreated=ps.executeUpdate();
 		if(rowsCreated!=0) return true;
+		ps.close();
 		return false;
 	}
 	public boolean update(@PathParam("name") String name,Profile profile) throws ClassNotFoundException, SQLException
@@ -72,6 +75,7 @@ public class ProfileService {
 			ps.setString(2, profile.getAbout());
 			int rowsCreated=ps.executeUpdate();
 			if(rowsCreated!=0) return true;
+				ps.close();
 			return false;
 	}
 	public boolean deleteProfile(@PathParam("name") String name) throws ClassNotFoundException, SQLException
@@ -82,6 +86,7 @@ public class ProfileService {
 		ps.setString(1, name);
 		int rowsCreated=ps.executeUpdate();
 		if(rowsCreated!=0) return true;
+		ps.close();
 		return false;
 	}
 
